@@ -51,13 +51,24 @@ public class RoshamboApp {
 			}
 			System.out.println("");
 			System.out.println("WINNER: " + keepScore(playerChoice, oppChoice, opponent, playerName));
-			System.out.println(playerName + "'s score: " + playerScore);
-			System.out.println(opponent + "'s score: " + oppScore);
+			
 			
 		}while(doAgain(scnr, "Play another round(y/n)?"));
 		System.out.println("Goodbye!");
 		scnr.close();
-		
+		System.out.println(playerName + "'s score: " + playerScore);
+		System.out.println(opponent + "'s score: " + oppScore);
+		if(oppScore > playerScore + 3) {
+			System.out.println(player1.getName() + ", you are the reason I have to doubt evolution and natural selection");
+		}else if(oppScore > playerScore + 2) {
+			System.out.println(opponent + generateOverwhelmingVictoryMessage() + player1.getName() + "!");
+		}else if(playerScore > oppScore + 2) {
+			System.out.println(player1.getName() + generateOverwhelmingVictoryMessage() + opponent + "!");
+		}else if(playerScore > oppScore) {
+			System.out.println(player1.getName() + generateCloseVictoryMessage() + opponent);
+		}else if(oppScore > playerScore) {
+			System.out.println(opponent + generateCloseVictoryMessage() + player1.getName());
+		}
 	}
 	
 	public static boolean doAgain(Scanner scnr, String prompt) {
@@ -140,5 +151,28 @@ public class RoshamboApp {
 			return opponent;
 		}
 		return opponent;
+	}
+	public static String generateOverwhelmingVictoryMessage() {
+		int randMessage = 1 + (int)(Math.random() * 3);
+		if (randMessage == 1) {
+			return " mopped the floor with ";
+		}else if (randMessage == 2) {
+			return " completely obliterated ";
+		}else if (randMessage == 3) {
+			return " casually stomped ";
+		}
+		return null;
+	
+	}
+	public static String generateCloseVictoryMessage() {
+		int randMessage = 1 + (int)(Math.random() * 3);
+		if (randMessage == 1) {
+			return " clenched a win against ";
+		}else if (randMessage == 2) {
+			return " narrowly defeated ";
+		}else if (randMessage == 3) {
+			return " barely pulled away with a win against ";
+		}
+		return null;
 	}
 }
